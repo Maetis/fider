@@ -27,7 +27,7 @@ func TestGetOAuthBaseURL(t *testing.T) {
 	ctx := newContext("https://mydomain.com/hello-world")
 
 	os.Setenv("HOST_MODE", "multi")
-	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("https://login.test.fider.io")
+	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("https://mydomain.com")
 
 	os.Setenv("HOST_MODE", "single")
 	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("https://mydomain.com")
@@ -39,7 +39,7 @@ func TestGetOAuthBaseURL_WithPort(t *testing.T) {
 	ctx := newContext("http://demo.test.fider.io:3000/hello-world")
 
 	os.Setenv("HOST_MODE", "multi")
-	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("http://login.test.fider.io:3000")
+	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("http://demo.test.fider.io:3000")
 
 	os.Setenv("HOST_MODE", "single")
 	Expect(webutil.GetOAuthBaseURL(ctx)).Equals("http://demo.test.fider.io:3000")
